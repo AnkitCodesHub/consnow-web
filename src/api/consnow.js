@@ -30,3 +30,4 @@ export const getPeerActivity = (peerId) => api(`/activity/peer/${peerId}`);
 export const recordProfileView = (ownerId) => api(`/profile-views/${ownerId}`, { method: 'POST' });
 export const getProfileViewers = () =>
   api(`/profile-views?since=${encodeURIComponent(startOfLocalDayIso())}`);
+export const deleteAccount = () => api('/auth/me', { method: 'DELETE' });

@@ -9,17 +9,20 @@ Web dashboard for Consnow (React + JavaScript, Vite). Log in with the same email
 
 It talks to the existing NestJS backend (`consnow-backend-production.up.railway.app`). No backend changes are needed.
 
+## Design
+The UI copies the Android app (`consnow-android`), not a separate web design:
+- Same Material 3 theme (Teal `#00897B`, Slate background) and the app's Friends palette, light + dark, Roboto font
+- Same screens: Sign in, Home (Today's Steps arc card, Synced pill, "Last moved…" / walking figure, animated padlock, Your code), Friends list (Active now / Inactive / Not connected), friend screen, Connect, Requests
+- Same animations: step-arc progress, walking figure (ported from `WalkingIndicator.kt`), lock/unlock padlock (`LockStatusWidget.kt`), press-and-hold on the step card to see who viewed you
+- Same round connect/disconnect buttons, snackbar with Undo, delete-account dialog
+
+On a laptop (≥1180 px) it shows three columns: you · friends · the selected friend. On smaller screens it is the app layout, one column, and a friend opens as its own screen with ← Back.
+
 ## Features
-- Log in / create account (`/auth/login`, `/auth/register`, token refresh on load)
-- Friends grid with search + sort (recently active, most steps, name)
-- Live updates over the same Socket.IO gateway as the app: `peer_unlocked`, `peer_locked`, `peer_activity`, `connection_changed`
-- Steps refresh every 30 s (the server doesn't push step counts), lock state every 60 s as a safety net, and a full refresh when the tab comes back into view or the date changes at midnight
-- Your connection code (click to copy) + connect by a friend's code
-- Not connected list: Connect, Cancel request, Accept / Decline, cooldown timer
-- Disconnect with a 5 s Undo
-- Opening a friend's card records a profile view (same as the app), and "Checked on you today" lists who viewed you
-- Consent: data is shown only for `connected` friends and is wiped from memory when a friend disconnects
-- Light/dark mode follows the system; responsive down to phone width
+- Log in / create account with the same account as the app
+- Live updates over the same Socket.IO gateway (`peer_unlocked`, `peer_locked`, `peer_activity`, `connection_changed`), plus a 20 s refresh like the app
+- Add a friend by code, accept / decline / cancel requests, disconnect with 5 s Undo
+- Consent rules as in the app: no data drawn for friends who aren't connected
 
 ## Run locally
 ```bash

@@ -4,8 +4,10 @@ export const API_URL = (
 ).replace(/\/+$/, '');
 
 // Steps have no live socket event, so we refresh them on a timer.
-export const STEPS_POLL_MS = 30_000;
+export const STEPS_POLL_MS = 20_000; // same as the Android app (PeerStatusesViewModel.POLL_MS)
 // Lock/online state also gets a slow safety-net refresh (socket covers the rest).
-export const ACTIVITY_POLL_MS = 60_000;
+export const ACTIVITY_POLL_MS = 20_000;
 // How long the "Undo" bar stays after Disconnect (server allows 15 s).
 export const UNDO_MS = 5_000;
+export const APP_VERSION = '1.0.0';
+export const PRIVACY_URL = 'https://ankitcodeshub.github.io/consow-privacy/';

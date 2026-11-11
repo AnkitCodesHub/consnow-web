@@ -1,8 +1,8 @@
 import { useAuth } from './hooks/useAuth';
 import AuthPage from './components/AuthPage';
-import Dashboard from './components/Dashboard';
+import Home from './components/Home';
 
 export default function App() {
   const { token } = useAuth();
-  return token ? <Dashboard /> : <AuthPage />;
+  return token ? <Home /> : <AuthPage />;
 }

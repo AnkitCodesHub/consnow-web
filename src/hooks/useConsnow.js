@@ -187,7 +187,10 @@ export function useConsnow(token) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
+  const refreshViewers = useCallback(() => { Api.getProfileViewers().then(setViewers).catch(() => {}); }, []);
+
   return {
+    refreshViewers,
     rows, setRows, live, me, requests, viewers, loading, error, socketState, lastSync,
     refreshAll, loadRows, loadPeer,
   };
